@@ -1,0 +1,50 @@
+<!-- WebView GUI for a Python SL4A (Scripting Layer For Android) script, showing how to 
+     exchange events between HTML/JavaScript & Python on Android. -->
+<html>
+<head>
+    <style>
+        #body {width:100%;}
+        .container {text-align:left;margin:auto;}
+        h1 {text-align:center;margin:auto;}
+        .container div {text-align:left}
+        label {display:block;float:left;width:25%;}
+        .expression {width:75%}
+        .button {text-align:center;margin:auto}
+        .button input {width:30%}
+        .result textarea {width:100%;height:85%}
+        textarea {
+            font-family:"DejaVu Sans Mono","Bitstream Vera Sans Mono","Courier New",monospace;
+        }
+    </style>
+
+<!-- Start of Javascript specific for Android SL4A. The remaining code can be created with generic HTML/Form/CSS editors. -->
+    <script>
+        var droid = new Android();
+       
+        var calculate = function() {
+            result = droid.eventWaitFor("calculation-result").result;
+            <!-- Removes the event from the buffer. -->
+            droid.eventWait()
+            <!-- Put the calculated result text as the content of the 'txtarea' result. -->
+            document.getElementById("txtarea_Result").innerHTML = result['data'];
+        }
+    </script>
+<!-- End of Javascript specific for Android SL4A. The remaining code can be created with generic HTML/Form/CSS editors. -->
+</head>
+
+<body>
+<body bgcolor ="#272822">
+<span style="color:#F8F8F2">
+<title>Signal GeoLogging</title>
+<div id="body">
+<h1>Signal GeoLogging</h1>
+
+<div class="result">
+  <textarea readonly="readonly" id="txtarea_Result" name="txtarea_Result" title="Result" style="background-color: #3E3D32;">
+    </textarea>
+</div>
+</form>
+</div>
+</body>
+</html>
+
